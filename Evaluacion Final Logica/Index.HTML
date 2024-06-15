@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Operación Matemática</title>
+</head>
+<body>
+    <div>
+        <label for="input1">Input 1:</label>
+        <input type="number" id="input1" />
+    </div>
+    <div>
+        <label for="input2">Input 2:</label>
+        <input type="number" id="input2" />
+    </div>
+    <div>
+        <label for="input3">Input 3:</label>
+        <input type="number" id="input3" />
+    </div>
+    <div>
+        <button onclick="validateAndCalculate()">Botón 1</button>
+        <button onclick="validateAndRepeat()">Botón 2</button>
+    </div>
+    <div id="resultado"></div>
+    <div id="resultado2"></div>
+
+    <script>
+        function validateAndCalculate() {
+            const input1 = parseFloat(document.getElementById('input1').value);
+            const input2 = parseFloat(document.getElementById('input2').value);
+            const input3 = parseFloat(document.getElementById('input3').value);
+            const resultadoDiv = document.getElementById('resultado');
+
+            if (isNaN(input1) || isNaN(input2) || isNaN(input3)) {
+                resultadoDiv.innerText = "Por favor ingrese valores válidos en todos los campos.";
+                return;
+            }
+
+            if (input1 > input2) {
+                const result = input1 * input2 * input3;
+                resultadoDiv.innerText = `La operación realizada es: ${input1} * ${input2} * ${input3} = ${result}`;
+            } else if (input2 === 0) {
+                const result = Math.abs(input1 - input3);
+                resultadoDiv.innerText = `La operación realizada es: |${input1} - ${input3}| = ${result}`;
+            } else if (input1 === input2) {
+                const result = input1 + input2 + input3;
+                resultadoDiv.innerText = `La operación realizada es: ${input1} + ${input2} + ${input3} = ${result}`;
+            } else {
+                resultadoDiv.innerText = "No se cumple ninguna condición especial.";
+            }
+        }
+
+        function validateAndRepeat() {
+            const input1 = parseFloat(document.getElementById('input1').value);
+            const input2 = parseFloat(document.getElementById('input2').value);
+            const input3 = parseFloat(document.getElementById('input3').value);
+            const resultadoDiv2 = document.getElementById('resultado2');
+
+            if (isNaN(input1) || isNaN(input2) || isNaN(input3)) {
+                resultadoDiv2.innerText = "Por favor ingrese valores válidos en todos los campos.";
+                return;
+            }
+
+            const sum = input1 + input2 + input3;
+            let result = "";
+
+            if (sum > 10) {
+                for (let i = 0; i < sum; i++) {
+                    result += `${input1} * ${input2} + ${input3} = ${(input1 * input2) + input3}\n`;
+                }
+            } else {
+                for (let i = 0; i < sum; i++) {
+                    result += `${input1} + ${input2} + ${input3} = ${input1 + input2 + input3}\n`;
+                }
+            }
+
+            resultadoDiv2.innerText = result;
+        }
+    </script>
+</body>
+</html>
